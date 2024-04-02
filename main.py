@@ -1,5 +1,8 @@
-def my_name(name):
-    print(name)
+a = 10
 
 
-my_name("Ku Ku")
+def my_fn():
+    print("Hello")
+
+
+print("Ku KU")  # comment
