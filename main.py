@@ -1,13 +1,5 @@
-print(10, "Python", True)
+def my_name(name):
+    print(name)
 
-name = input("Enter your name: ")
 
-print(dir(name))
-
-print(name)
-
-print(name.capitalize())
-
-print(name.upper())
-
-print(name.casefold())
+my_name("Ku Ku")
