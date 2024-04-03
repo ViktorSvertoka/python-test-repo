@@ -1,8 +1,8 @@
-a = 10
+def hello(name):
+    print("Hello there!", name)
+    print("Hi there!", name)
 
 
-def my_fn():
-    print("Hello")
+print("Ku Ku")
 
-
-print("Ku KU")  # comment
+hello("Inna")
