@@ -1,8 +1,9 @@
-def hello(name):
-    print("Hello there!", name)
-    print("Hi there!", name)
+def sum_nums(a, b):
+    sum = a + b
+    return sum
 
 
-print("Ku Ku")
+first_sum = sum_nums(10, 5)
+print(first_sum)
 
-hello("Inna")
+print(sum_nums(50.5, 20))
