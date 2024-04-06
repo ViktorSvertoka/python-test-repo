@@ -1,6 +1,9 @@
-def calc_fun(a, b):
-    num_sum = a + b
-    return num_sum
+# імена в Python
 
+# snake_case - змінні, функції, методи, модулі
 
-print(calc_fun(10, 20))
+# PascalCase - класи
+
+# my-package - пакети
+
+# DB_PASSWORD - константи
