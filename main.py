@@ -1,9 +1,7 @@
-# імена в Python
+my_variable = 10
 
-# snake_case - змінні, функції, методи, модулі
+my_variable = "Inna"
 
-# PascalCase - класи
+my_variable = True
 
-# my-package - пакети
-
-# DB_PASSWORD - константи
+print(my_variable)
