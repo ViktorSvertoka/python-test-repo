@@ -1,11 +1,15 @@
-my_number = 10
+my_name = "Inna"
+print(my_name)  # Inna
 
-print(id(my_number))
+print(type(my_name))  # <class 'str'>
 
-my_string = "Inna"
+print(id(my_name))  # 4337341040
 
-print(id(my_string))
+long_string = """This is 
+a very 
+long string"""
+print(long_string)
 
-other_string = my_string
+print(type(long_string))
 
-print(id(other_string))
+print(id(long_string))
