@@ -1,9 +1,11 @@
-def print_name(name):
-    print(name)
+my_number = 10
 
+print(id(my_number))
 
-print_name("Inna")
+my_string = "Inna"
 
-print_name = 15
+print(id(my_string))
 
-print_name("Inna")
+other_string = my_string
+
+print(id(other_string))
