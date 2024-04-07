@@ -1,32 +1,32 @@
-happy_smiles = []
+greeting = "Hello from Python"
+greeting_letters = list(greeting)
 
-happy_smiles.append("😁")
-happy_smiles.append("🤩")
-happy_smiles.append("😎")
-happy_smiles.append("🥳")
-
-print(happy_smiles)
-print(len(happy_smiles))
+print(greeting_letters)
 
 
-inputs = [True, "Hi!", "😎", 10.5]
+my_dict = {"a": 10, "b": True}
+my_dict_keys = list(my_dict)
 
-inputs.pop()
-print(inputs)
-
-inputs.pop(0)
-print(inputs)
-
-removed_element = inputs.pop()
-print(removed_element)
-
-print(inputs)
+print(my_dict_keys)
 
 
-posts_ids = [222, 777, 444, 333]
+ratings = [2.5, 5.0, 4.3, 3.7]
 
-posts_ids.sort()
-print(posts_ids)
+print(min(ratings))
+print(max(ratings))
+print(sum(ratings))
 
-posts_ids.sort(reverse=True)
-print(posts_ids)
+print(sum(ratings) / len(ratings))
+
+
+my_ratings = [2.5, 5.0]
+
+other_ratings = [3.7, 4.5, 4.9]
+
+all_ratings = my_ratings + other_ratings
+
+print(all_ratings)
+
+first_two_all_ratings = all_ratings[:2]
+
+print(first_two_all_ratings)
