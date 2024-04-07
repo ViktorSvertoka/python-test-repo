@@ -1,16 +1,8 @@
-average_price = 28.75
-price = int(average_price)
+complex_a = 3 + 5j
+complex_b = 4 + 7j
 
-print(price)  # 28
-print(type(price))  # <class 'int'>
+sum = complex_a + complex_b
 
-str_temperature = "14.5"
-temperature = float(str_temperature)
+print(sum)  # (7+12j)
 
-print(temperature)  # 14.5
-print(type(temperature))  # <class 'float'>
-
-rate = 0.78
-
-print(round(rate))  # 1
-print(type(round(rate)))  # <class 'int'>
+print(type(sum))  # <class 'complex'>
