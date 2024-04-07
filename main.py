@@ -1,15 +1,9 @@
-my_name = "Inna"
-print(my_name)  # Inna
+my_comment = "This is my short comment"
 
-print(type(my_name))  # <class 'str'>
+print(len(my_comment))
 
-print(id(my_name))  # 4337341040
+print(my_comment.replace("short", "long"))
 
-long_string = """This is 
-a very 
-long string"""
-print(long_string)
+print(my_comment.count("is"))
 
-print(type(long_string))
-
-print(id(long_string))
+print(my_comment[2:7])
