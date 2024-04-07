@@ -1,14 +1,6 @@
-int_num = 5
-float_num = 4.5
+int_num = 50
+str_val = "abc"
 
-print(int_num + float_num)
-print(float_num + int_num)
-
-bool_val = True
-int_val = 7
-
-print(bool_val + int_val)
-print(int_val + bool_val)
-
-print(int_num.__add__(float_num))
-print(float_num.__radd__(int_num))
+print(str_val * int_num)
+print(int_num.__mul__(str_val))
+print(str_val.__rmul__(int_num))
