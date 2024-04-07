@@ -1,7 +1,4 @@
-user_input = input("Enter any number: ")  # str
+base = 5
+power = 3
 
-any_number = int(user_input)  # int
-
-print(any_number)
-
-print(type(any_number))
+print(pow(base, power))  # 125 or 5**3
