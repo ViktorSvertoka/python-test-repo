@@ -1,8 +1,14 @@
-complex_a = 3 + 5j
-complex_b = 4 + 7j
+is_authorized = True
 
-sum = complex_a + complex_b
+print(is_authorized)
+print(type(is_authorized))
 
-print(sum)  # (7+12j)
+print(100 > 24)
 
-print(type(sum))  # <class 'complex'>
+print(-5 > 0)
+
+print("Long string" > "Long")
+
+print([1, 2, 3] == [1, 2, 3])
+
+print({"a": 5} == {"a": 5})
