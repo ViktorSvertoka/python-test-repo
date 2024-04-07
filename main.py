@@ -1,9 +1,7 @@
-my_comment = "This is my short comment"
+user_input = input("Enter any number: ")  # str
 
-print(len(my_comment))
+any_number = int(user_input)  # int
 
-print(my_comment.replace("short", "long"))
+print(any_number)
 
-print(my_comment.count("is"))
-
-print(my_comment[2:7])
+print(type(any_number))
