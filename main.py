@@ -1,22 +1,32 @@
-users = [
-    {"user_id": 134, "user_name": "Inna"},
-    {"user_id": 135, "user_name": "Bob"},
-    {"user_id": 136, "user_name": "Alice"},
-    {"user_id": 137, "user_name": "Stan"},
-]
+happy_smiles = []
 
-print(len(users))  # 4
-print(users[0]["user_id"])  # 134
-print(users[0]["user_name"])  # Inna
+happy_smiles.append("😁")
+happy_smiles.append("🤩")
+happy_smiles.append("😎")
+happy_smiles.append("🥳")
 
-
-my_fruit = "apple"
-other_fruit = "banana"
-new_fruit = "lime"
-
-all_fruits = [my_fruit, other_fruit, new_fruit]
-print(all_fruits)  # ['apple', 'banana', 'lime']
+print(happy_smiles)
+print(len(happy_smiles))
 
 
-posts_ids = [111, 222, 333, 444]
-print(posts_ids[10])  # IndexError: list index out of range
+inputs = [True, "Hi!", "😎", 10.5]
+
+inputs.pop()
+print(inputs)
+
+inputs.pop(0)
+print(inputs)
+
+removed_element = inputs.pop()
+print(removed_element)
+
+print(inputs)
+
+
+posts_ids = [222, 777, 444, 333]
+
+posts_ids.sort()
+print(posts_ids)
+
+posts_ids.sort(reverse=True)
+print(posts_ids)
