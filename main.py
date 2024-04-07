@@ -1,19 +1,22 @@
-empty_list = []
-print(len(empty_list))
+users = [
+    {"user_id": 134, "user_name": "Inna"},
+    {"user_id": 135, "user_name": "Bob"},
+    {"user_id": 136, "user_name": "Alice"},
+    {"user_id": 137, "user_name": "Stan"},
+]
 
-my_fruits = ["apple", "banana", "lime"]
-print(len(my_fruits))
+print(len(users))  # 4
+print(users[0]["user_id"])  # 134
+print(users[0]["user_name"])  # Inna
 
-posts_ids = [151, 245, 762, 167]
-print(len(posts_ids))
-print(posts_ids[0])
-print(posts_ids[1])
-print(posts_ids[2])
-print(posts_ids[-1])
 
-posts_ids[0] = 555
-posts_ids[2] = 333
-print(posts_ids)
+my_fruit = "apple"
+other_fruit = "banana"
+new_fruit = "lime"
 
-user_inputs = [True, "hi!", "😎", 10.5]
-print(len(user_inputs))
+all_fruits = [my_fruit, other_fruit, new_fruit]
+print(all_fruits)  # ['apple', 'banana', 'lime']
+
+
+posts_ids = [111, 222, 333, 444]
+print(posts_ids[10])  # IndexError: list index out of range
