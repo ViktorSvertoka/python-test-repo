@@ -1,14 +1,11 @@
-is_authorized = True
+int_num = 5
+float_num = 4.5
 
-print(is_authorized)
-print(type(is_authorized))
+print(int_num + float_num)
+print(float_num + int_num)
 
-print(100 > 24)
+bool_val = True
+int_val = 7
 
-print(-5 > 0)
-
-print("Long string" > "Long")
-
-print([1, 2, 3] == [1, 2, 3])
-
-print({"a": 5} == {"a": 5})
+print(bool_val + int_val)
+print(int_val + bool_val)
