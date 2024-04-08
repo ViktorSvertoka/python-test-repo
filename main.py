@@ -1,32 +1,12 @@
-greeting = "Hello from Python"
-greeting_letters = list(greeting)
+my_cars = ["BMW", "Mercedes"]
 
-print(greeting_letters)
+# copied_cars = my_cars[:]
+copied_cars = my_cars.copy()
 
+copied_cars.append("Audi")
 
-my_dict = {"a": 10, "b": True}
-my_dict_keys = list(my_dict)
+print(copied_cars)  # ['BMW', 'Mercedes', 'Audi']
 
-print(my_dict_keys)
+print(my_cars)  # ['BMW', 'Mercedes']
 
-
-ratings = [2.5, 5.0, 4.3, 3.7]
-
-print(min(ratings))
-print(max(ratings))
-print(sum(ratings))
-
-print(sum(ratings) / len(ratings))
-
-
-my_ratings = [2.5, 5.0]
-
-other_ratings = [3.7, 4.5, 4.9]
-
-all_ratings = my_ratings + other_ratings
-
-print(all_ratings)
-
-first_two_all_ratings = all_ratings[:2]
-
-print(first_two_all_ratings)
+print(id(my_cars) == id(copied_cars))  # False
