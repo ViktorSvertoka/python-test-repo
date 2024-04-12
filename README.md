@@ -1,11 +1,21 @@
 # Python
 
-> [!NOTE] snake_case - змінні, функції, методи, модулі.
+> [!NOTE]
+>
+> snake_case - змінні, функції, методи, модулі.
 
-> [!TIP] PascalCase - класи.
+> [!TIP]
+>
+> PascalCase - класи.
 
-> [!IMPORTANT] my-package - пакети.
+> [!IMPORTANT]
+>
+> my-package - пакети.
 
-> [!WARNING] DB_PASSWORD - константи.
+> [!WARNING]
+>
+> DB_PASSWORD - константи.
 
-> [!CAUTION] Іменування в Python.
+> [!CAUTION]
+>
+> Іменування в Python.
