@@ -1,21 +1,11 @@
 # Python
 
-## Іменування в Python
+> [!NOTE] snake_case - змінні, функції, методи, модулі.
 
-- snake_case - змінні, функції, методи, модулі
+> [!TIP] PascalCase - класи.
 
-- PascalCase - класи
+> [!IMPORTANT] my-package - пакети.
 
-- my-package - пакети
+> [!WARNING] DB_PASSWORD - константи.
 
-- DB_PASSWORD - константи
-
-> [!NOTE] Useful information that users should know, even when skimming content.
-
-> [!TIP] Helpful advice for doing things better or more easily.
-
-> [!IMPORTANT] Key information users need to know to achieve their goal.
-
-> [!WARNING] Urgent info that needs immediate user attention to avoid problems.
-
-> [!CAUTION] Advises about risks or negative outcomes of certain actions.
+> [!CAUTION] Іменування в Python.
