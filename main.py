@@ -1,15 +1,8 @@
-def convert_camel_to_snake(name):
-    res = ""
-    for char in name:
-        if char.isupper():
-            res += "_" + char.lower()
-        else:
-            res += char
-    return res
+num = int(input("Введіть число: "))
 
+length = len(str(num))
 
-s = "geeksForGeeks"
-
-snaked_s = convert_camel_to_snake(s)
-
-print(snaked_s)
+if length == 2 and num % 2 == 0:
+    print("Парне двозначне число")
+else:
+    print("Ні")
