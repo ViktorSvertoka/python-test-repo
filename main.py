@@ -47,6 +47,12 @@ string = "Inna Mykytiuk"
 result = ""
 
 for ch in string:
-    result = result + ch.upper().translate(table_morze_dict)
+    encoded_char = ch.upper().translate(table_morze_dict)
+    result += encoded_char if encoded_char else ""
 
 print(result)
+
+# Виведення кожного символу з його Морзе-кодом у новому рядку
+for ch in string:
+    encoded_char = ch.upper().translate(table_morze_dict)
+    print(ch, encoded_char)
