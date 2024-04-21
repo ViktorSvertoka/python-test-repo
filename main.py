@@ -52,6 +52,10 @@ for ch in string:
 
 print(result)
 
+
+print(" ")
+
+
 # Виведення кожного символу з його Морзе-кодом у новому рядку
 for ch in string:
     encoded_char = ch.upper().translate(table_morze_dict)
