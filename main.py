@@ -1,62 +1,16 @@
-morze_dict = {
-    "A": ".-",
-    "B": "-...",
-    "C": "-.-.",
-    "D": "-..",
-    "E": ".",
-    "F": "..-.",
-    "G": "--.",
-    "H": "....",
-    "I": "..",
-    "J": ".---",
-    "K": "-.-",
-    "L": ".-..",
-    "M": "--",
-    "N": "-.",
-    "O": "---",
-    "P": ".--.",
-    "Q": "--.-",
-    "R": ".-.",
-    "S": "...",
-    "T": "-",
-    "U": "..-",
-    "V": "...-",
-    "W": ".--",
-    "X": "-..-",
-    "Y": "-.--",
-    "Z": "--..",
-    "0": "-----",
-    "1": ".----",
-    "2": "..---",
-    "3": "...--",
-    "4": "....-",
-    "5": ".....",
-    "6": "-....",
-    "7": "--...",
-    "8": "---..",
-    "9": "----.",
-}
+import re
 
-# Перетворення ключів словника на Unicode коди
-table_morze_dict = {}
-for k, v in morze_dict.items():
-    table_morze_dict[ord(k)] = v
+text = "Вивчення Python може бути веселим."
+pattern = r"в\w*м"
+match = re.search(pattern, text, re.IGNORECASE)
 
-string = "Inna Mykytiuk"
-
-result = ""
-
-for ch in string:
-    encoded_char = ch.upper().translate(table_morze_dict)
-    result += encoded_char if encoded_char else ""
-
-print(result)
+if match:
+    print("Знайдено:", match.group())
 
 
-print(" ")
+text = "Моя електронна адреса: example@example.com"
+pattern = r"\w+@\w+\.\w+"
+match = re.search(pattern, text)
 
-
-# Виведення кожного символу з його Морзе-кодом у новому рядку
-for ch in string:
-    encoded_char = ch.upper().translate(table_morze_dict)
-    print(ch, encoded_char)
+if match:
+    print("Електронна адреса:", match.group())
