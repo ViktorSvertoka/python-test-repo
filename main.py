@@ -1,12 +1,16 @@
-import shutil
+from pathlib import PurePath
 
-# Створення ZIP-архіву з вмістом директорії 'my_folder'
-shutil.make_archive("example", "zip", root_dir="my_folder")
+p = PurePath("/usr/bin/simple.jpg")
+print("Name:", p.name)
+print("Suffix:", p.suffix)
+print("Parent:", p.parent)
+
+print("")
 
 
-# Створення TAR.GZ архіву
-shutil.make_archive("example", "gztar", root_dir="my_folder")
+from pathlib import Path
 
-
-# Розпакування ZIP-архіву в певну директорію
-shutil.unpack_archive("example.zip", "destination_folder")
+p = Path("example.txt")
+p.write_text("Hello, world!")
+print(p.read_text())
+print("Exists:", p.exists())
