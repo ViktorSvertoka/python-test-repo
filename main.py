@@ -1,16 +1,17 @@
-from pathlib import PurePath
+from pathlib import Path
 
-p = PurePath("/usr/bin/simple.jpg")
-print("Name:", p.name)
-print("Suffix:", p.suffix)
-print("Parent:", p.parent)
+# Початковий шлях
+base_path = Path("/usr/bin")
 
-print("")
+# Додавання додаткових частин до шляху
+full_path = base_path / "subdir" / "script.py"
+
+print(full_path)  # Виведе: /usr/bin/subdir/script.py
 
 
 from pathlib import Path
 
-p = Path("example.txt")
-p.write_text("Hello, world!")
-print(p.read_text())
-print("Exists:", p.exists())
+# Перетворення відносного шляху в абсолютний
+relative_path = Path("documents/example.txt")
+absolute_path = relative_path.absolute()
+print(absolute_path)
