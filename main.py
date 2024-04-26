@@ -1,47 +1,30 @@
 from pathlib import Path
 
-# Початковий шлях до файлу
-original_path = Path("documents/example.txt")
-
-# Зміна імені файлу
-new_path = original_path.with_name("report.txt")
-print(new_path)
-
-
-from pathlib import Path
-
-# Початковий шлях до файлу
-original_path = Path("documents/example.txt")
-
-# Зміна імені файлу
-new_path = original_path.with_suffix(".md")
-print(new_path)
-
-
-from pathlib import Path
-
-original_path = Path("documents/example.txt")
-
-# Створює новий об'єкт Path з іншим ім'ям файлу
-new_path = original_path.with_name("report.txt")
-
-print(original_path)
-print(new_path)
-
-
-# from pathlib import Path
-
-# original_path = Path("documents/example.txt")
-
-# # Створює новий об'єкт Path з іншим ім'ям файлу
-# new_path = original_path.with_name("report.txt")
-# original_path.rename(new_path)
-
-
-from pathlib import Path
-
 # Створення об'єкту Path для файлу
 file_path = Path("example.txt")
 
-# Запис тексту у файл
-file_path.write_text("Привіт світ!", encoding="utf-8")
+# Читання тексту з файлу
+text = file_path.read_text(encoding="utf-8")
+print(text)
+
+
+from pathlib import Path
+
+# Створення об'єкту Path для бінарного файлу
+file_path = Path("example.bin")
+
+# Бінарні дані для запису
+data = b"Python is great!"
+
+# Запис байтів у файл
+file_path.write_bytes(data)
+
+
+from pathlib import Path
+
+# Створення об'єкту Path для бінарного файлу
+file_path = Path("example.bin")
+
+# Читання байтів з файлу
+binary_data = file_path.read_bytes()
+print(binary_data)
