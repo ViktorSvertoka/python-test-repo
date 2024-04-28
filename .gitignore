@@ -107,3 +107,7 @@ typings/
 
 # TernJS port file
 .tern-port
+
+
+.venv
+__pycache__
