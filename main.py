@@ -1,61 +1,38 @@
-def complicated(x: int, y: int) -> int:
-    return x + y
+sq = []
+for i in range(1, 6):
+    sq.append(i**2)
+
+print(sq)
 
 
-def complicated(x: int, y: int) -> int:
-    return x + y
+sq = [x**2 for x in range(1, 6)]
+print(sq)
 
 
-def logger(func):
-    def inner(x: int, y: int) -> int:
-        print(f"Викликається функція: {func.__name__}: {x}, {y}")
-        result = func(x, y)
-        print(f"Функція {func.__name__} завершила виконання: {result}")
-        return result
-
-    return inner
+even_squares = [x**2 for x in range(1, 10) if x % 2 == 0]
+print(even_squares)
 
 
-complicated = logger(complicated)
-print(complicated(2, 3))
+even_squares = []
+for x in range(1, 10):
+    if x % 2 == 0:
+        even_squares.append(x**2)
+
+print(even_squares)
 
 
-def logger(func):
-    def inner(x: int, y: int) -> int:
-        print(f"Викликається функція: {func.__name__}: {x}, {y}")
-        result = func(x, y)
-        print(f"Функція {func.__name__} завершила виконання: {result}")
-        return result
-
-    return inner
+numbers = [1, 4, 1, 3, 2, 5, 2, 6]
+sq = {i**2 for i in numbers}
+print(sq)
 
 
-@logger
-def complicated(x: int, y: int) -> int:
-    return x + y
+odd_squares = {x**2 for x in range(1, 10) if x % 2 != 0}
+print(odd_squares)
 
 
-print(complicated(2, 3))
+sq = {x: x**2 for x in range(1, 10)}
+print(sq)
 
 
-from functools import wraps
-
-
-def logger(func):
-    @wraps(func)
-    def inner(x: int, y: int) -> int:
-        print(f"Викликається функція: {func.__name__}: {x}, {y}")
-        result = func(x, y)
-        print(f"Функція {func.__name__} завершила виконання: {result}")
-        return result
-
-    return inner
-
-
-@logger
-def complicated(x: int, y: int) -> int:
-    return x + y
-
-
-print(complicated(2, 3))
-print(complicated.__name__)
+sq_dict = {x: x**2 for x in range(1, 10) if x > 5}
+print(sq_dict)
