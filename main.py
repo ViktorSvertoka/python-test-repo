@@ -1,55 +1,149 @@
-even_nums = filter(lambda x: x % 2 == 0, range(1, 21))
-
-print(list(even_nums))
-
-
-def is_positive(x):
-    return x > 0
+class User:
+    name = "Anonymous"
+    age = 15
 
 
-nums = [-2, -1, 0, 1, 2]
-positive_nums = filter(is_positive, nums)
+user1 = User()
+print(user1.name)
+print(user1.age)
 
-print(list(positive_nums))
+user2 = User()
+user2.name = "John"
+user2.age = 90
 
-
-some_str = "Видавництво А-БА-БА-ГА-ЛА-МА-ГА"
-
-new_str = "".join(list(filter(lambda x: x.islower(), some_str)))
-print(new_str)
-
-
-nums = [1, 2, 3, 4, 5, 6]
-even_nums = [x for x in nums if x % 2 == 0]
-print(even_nums)
+print(user2.name)
+print(user2.age)
 
 
-some_str = "Видавництво А-БА-БА-ГА-ЛА-МА-ГА"
+class Person:
+    def __init__(self, name: str, age: int):
+        self.name = name
+        self.age = age
 
-new_str = "".join([x for x in some_str if x.islower()])
-print(new_str)
+    def say_name(self) -> None:
+        print(f"Hi! I am {self.name} and I am {self.age} years old.")
 
-
-nums = [0, False, 5, 0]
-result = any(nums)
-print(result)
-
-
-nums = [1, 3, 5, 7, 9]
-result = any(x % 2 == 0 for x in nums)
-print(result)
+    def set_age(self, age: int) -> None:
+        self.age = age
 
 
-nums = [1, 2, 3, 4]
-result = all(nums)
-print(result)
+bob = Person("Boris", 34)
+
+bob.say_name()
+bob.set_age(25)
+bob.say_name()
 
 
-nums = [1, 2, 3, 4]
-is_all_even = all(x % 2 == 0 for x in nums)
-print(is_all_even)
+class Person:
+    count = 0
+
+    def __init__(self, name: str):
+        self.name = name
+        Person.count += 1
+
+    def how_many_persons(self):
+        print(f"Кількість людей зараз {Person.count}")
 
 
-words = ["Hello", "World", "Python"]
-is_all_title_case = all(word.istitle() for word in words)
-print(is_all_title_case)
+first = Person("Boris")
+first.how_many_persons()
+second = Person("Alex")
+first.how_many_persons()
+
+
+class Pokemon:
+    def __init__(self, name, type, health):
+        self.name = name
+        self.type = type
+        self.health = health
+
+    def attack(self, other_pokemon):
+        print(f"{self.name} attacks {other_pokemon.name}!")
+
+    def dodge(self):
+        print(f"{self.name} dodged the attack!")
+
+    def evolve(self, new_form):
+        print(f"{self.name} is evolving into {new_form}!")
+        self.name = new_form
+
+
+# Створення об'єкта Pikachu
+pikachu = Pokemon("Pikachu", "Electric", 100)
+
+# Використання методів
+pikachu.attack(Pokemon("Charmander", "Fire", 100))
+pikachu.dodge()
+pikachu.evolve("Raichu")
+
+
+class Person:
+    def __init__(self, name: str, age: int, is_active: bool):
+        self.name = name
+        self.age = age
+        self._is_active = is_active
+
+    def greeting(self):
+        return f"Hi {self.name}"
+
+    def is_active(self):
+        return self._is_active
+
+    def set_active(self, active: bool):
+        self._is_active = active
+
+
+p = Person("Boris", 34, True)
+print(p.name, p.age, p.is_active())
+print(p.greeting())
+
+
+class Person:
+    def __init__(self, name: str, age: int, is_active: bool, is_admin: bool):
+        self.name = name
+        self.age = age
+        self._is_active = is_active
+        self.__is_admin = is_admin
+
+    def greeting(self):
+        return f"Hi {self.name}"
+
+    def is_active(self):
+        return self._is_active
+
+    def set_active(self, active: bool):
+        self._is_active = active
+
+
+p = Person("Boris", 34, True, False)
+print(p._Person__is_admin)
+
+
+class Person:
+    def __init__(self, name: str, age: int, is_active: bool, is_admin: bool):
+        self.name = name
+        self.age = age
+        self._is_active = is_active
+        self.__is_admin = is_admin
+
+    def greeting(self):
+        return f"Hi {self.name}"
+
+    def is_active(self):
+        return self._is_active
+
+    def set_active(self, active: bool):
+        self._is_active = active
+
+    def get_is_admin(self):
+        return self.__is_admin
+
+    def set_is_admin(self, is_admin: bool):
+        # Тут можна додати будь-яку логіку перевірки або обробки
+        self.__is_admin = is_admin
+
+
+p = Person("Boris", 34, True, False)
+print(p.get_is_admin())
+p.set_is_admin(True)
+print(p.get_is_admin())
