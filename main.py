@@ -1,72 +1,38 @@
-class Owner:
-    def __init__(self, name: str, phone: str):
-        self.name = name
-        self.phone = phone
-
-    def info(self):
-        return f"{self.name}: {self.phone}"
-
-
-class Cat(Owner):
-    def __init__(self, nickname: str, age: int, owner: Owner):
-        self.nickname = nickname
-        self.age = age
-        self.owner = owner
-
-    def get_info(self):
-        return f"Cat Name: {self.nickname}, Age: {self.age}"
-
-    def sound(self):
-        return "Meow"
+try:
+    # Код, який може викликати виняток
+    result = 10 / 0
+except ZeroDivisionError:
+    # Обробка винятку ділення на нуль
+    print("Ділення на нуль!")
+except Exception as e:
+    # Обробка будь-якого іншого винятку
+    print(f"Виникла помилка: {e}")
+else:
+    # Виконується, якщо виняток не був викликаний
+    print("Все пройшло успішно!")
+finally:
+    # Виконується завжди, незалежно від того, був виняток чи ні
+    print("Блок finally завжди виконується.")
 
 
-owner = Owner("Boris", "+380503002010")
-cat = Cat("Simon", 4, owner)
-print(cat.owner.info())
-print(cat.get_info())
+# Визначення власного класу винятку
+class AgeVerificationError(Exception):
+    def __init__(self, message="Вік не задовольняє мінімальній вимозі"):
+        self.message = message
+        super().__init__(self.message)
 
 
-# ------------------------------------------------------------------
+# Функція для перевірки віку
+def verify_age(age: int):
+    if age < 18:
+        raise AgeVerificationError("Вік особи меньший за 18 років")
 
 
-class Task:
-    def __init__(self, name: str, description: str):
-        self.name = name
-        self.description = description
-
-    def display_info(self):
-        print(f"Задача: {self.name}, Опис: {self.description}")
-
-
-class Project:
-    def __init__(self, name: str):
-        self.name = name
-        self.tasks: list(Task) = []
-
-    def add_task(self, name: str, description: str):
-        self.tasks.append(Task(name, description))
-
-    def remove_task(self, name: str):
-        self.tasks = [task for task in self.tasks if task.name != name]
-
-    def display_project_info(self):
-        print(f"Проект: {self.name}")
-        for task in self.tasks:
-            task.display_info()
-
-
-# Створення проекту
-my_project = Project("Веб-розробка")
-
-# Додавання задач
-my_project.add_task("Дизайн інтерфейсу", "Створити макет головної сторінки.")
-my_project.add_task("Розробка API", "Реалізувати ендпоінти для користувачів.")
-
-# Відображення інформації про проект
-my_project.display_project_info()
-
-# Видалення задачі
-my_project.remove_task("Розробка API")
-
-# Перевірка видалення задачі
-my_project.display_project_info()
+if __name__ == "__main__":
+    # Обробка винятку
+    try:
+        verify_age(26)  # Змініть вік для різних результатів
+    except AgeVerificationError as e:
+        print(f"Виняток: {e}")
+    else:
+        print("Вік перевірено, особа доросла.")
