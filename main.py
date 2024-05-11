@@ -1,97 +1,72 @@
-from dataclasses import dataclass
-
-
-@dataclass
-class Rectangle:
-    width: int
-    height: int
-
-    def area(self) -> int:
-        return self.width * self.height
-
-
-rect1 = Rectangle(10, 5)
-rect2 = Rectangle(7, 3)
-rect3 = Rectangle(8, 6)
-
-print(f"Площа прямокутника 1: {rect1.area()}")
-print(f"Площа прямокутника 2: {rect2.area()}")
-print(f"Площа прямокутника 3: {rect3.area()}")
-
-
-# -------------------------------------------------------
-
-
-from enum import Enum
-
-
-class Day(Enum):
-    MONDAY = 1
-    TUESDAY = 2
-    WEDNESDAY = 3
-    THURSDAY = 4
-    FRIDAY = 5
-    SATURDAY = 6
-    SUNDAY = 7
-
-
-today = Day.MONDAY
-print(today)  # Виведе: Day.MONDAY
-
-
-if today == Day.MONDAY:
-    print("Сьогодні понеділок.")
-else:
-    print("Сьогодні не понеділок.")
-
-
-print(today.name)
-print(today.value)
-
-
-day_from_value = Day(1)
-print(day_from_value)  # Виведе: Day.MONDAY
-
-
-# -------------------------------------------------------
-
-
-from enum import Enum, auto
-
-
-class OrderStatus(Enum):
-    NEW = auto()
-    PROCESSING = auto()
-    SHIPPED = auto()
-    DELIVERED = auto()
-    CANCELED = auto()
-
-
-class Order:
-    def __init__(self, name: str, status: OrderStatus):
+class Owner:
+    def __init__(self, name: str, phone: str):
         self.name = name
-        self.status = status
+        self.phone = phone
 
-    def update_status(self, new_status: OrderStatus):
-        self.status = new_status
-        print(f"Замовлення '{self.name}' оновлено до статусу {self.status.name}.")
-
-    def display_status(self):
-        print(f"Статус замовлення '{self.name}': {self.status.name}.")
+    def info(self):
+        return f"{self.name}: {self.phone}"
 
 
-order1 = Order("Ноутбук", OrderStatus.NEW)
-order2 = Order("Книга", OrderStatus.NEW)
-order3 = Order("Таро", OrderStatus.NEW)
+class Cat(Owner):
+    def __init__(self, nickname: str, age: int, owner: Owner):
+        self.nickname = nickname
+        self.age = age
+        self.owner = owner
 
-order1.display_status()
-order2.display_status()
-order3.display_status()
+    def get_info(self):
+        return f"Cat Name: {self.nickname}, Age: {self.age}"
 
-order1.update_status(OrderStatus.PROCESSING)
-order2.update_status(OrderStatus.SHIPPED)
-order3.update_status(OrderStatus.CANCELED)
+    def sound(self):
+        return "Meow"
 
-order1.display_status()
-order2.display_status()
-order3.display_status()
+
+owner = Owner("Boris", "+380503002010")
+cat = Cat("Simon", 4, owner)
+print(cat.owner.info())
+print(cat.get_info())
+
+
+# ------------------------------------------------------------------
+
+
+class Task:
+    def __init__(self, name: str, description: str):
+        self.name = name
+        self.description = description
+
+    def display_info(self):
+        print(f"Задача: {self.name}, Опис: {self.description}")
+
+
+class Project:
+    def __init__(self, name: str):
+        self.name = name
+        self.tasks: list(Task) = []
+
+    def add_task(self, name: str, description: str):
+        self.tasks.append(Task(name, description))
+
+    def remove_task(self, name: str):
+        self.tasks = [task for task in self.tasks if task.name != name]
+
+    def display_project_info(self):
+        print(f"Проект: {self.name}")
+        for task in self.tasks:
+            task.display_info()
+
+
+# Створення проекту
+my_project = Project("Веб-розробка")
+
+# Додавання задач
+my_project.add_task("Дизайн інтерфейсу", "Створити макет головної сторінки.")
+my_project.add_task("Розробка API", "Реалізувати ендпоінти для користувачів.")
+
+# Відображення інформації про проект
+my_project.display_project_info()
+
+# Видалення задачі
+my_project.remove_task("Розробка API")
+
+# Перевірка видалення задачі
+my_project.display_project_info()
