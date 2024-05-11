@@ -1,135 +1,97 @@
-from collections import UserDict
+from dataclasses import dataclass
 
 
-class MyDictionary(UserDict):
-    # Приклад додавання нового методу
-    def add_key(self, key, value):
-        self.data[key] = value
+@dataclass
+class Rectangle:
+    width: int
+    height: int
+
+    def area(self) -> int:
+        return self.width * self.height
 
 
-# Створення екземпляра власного класу
-my_dict = MyDictionary({"a": 1, "b": 2})
-my_dict.add_key("c", 3)
-my_dict.add_key("d", 4)
-my_dict.add_key("e", 5)
-print(my_dict)
+rect1 = Rectangle(10, 5)
+rect2 = Rectangle(7, 3)
+rect3 = Rectangle(8, 6)
 
-# -------------------------------------------
-
-contacts = [
-    {
-        "name": "Allen Raymond",
-        "email": "nulla.ante@vestibul.co.uk",
-        "phone": "(992) 914-3792",
-        "favorite": False,
-    },
-    {
-        "name": "Chaim Lewis",
-        "email": "dui.in@egetlacus.ca",
-        "phone": "(294) 840-6685",
-        "favorite": False,
-    },
-    {
-        "name": "Kennedy Lane",
-        "email": "mattis.Cras@nonenimMauris.net",
-        "phone": "(542) 451-7038",
-        "favorite": True,
-    },
-]
+print(f"Площа прямокутника 1: {rect1.area()}")
+print(f"Площа прямокутника 2: {rect2.area()}")
+print(f"Площа прямокутника 3: {rect3.area()}")
 
 
-class Customer(UserDict):
-    def phone_info(self):
-        return f"{self.get('name')}: {self.get('phone')}"
-
-    def email_info(self):
-        return f"{self.get('name')}: {self.get('email')}"
+# -------------------------------------------------------
 
 
-if __name__ == "__main__":
-    customers = [Customer(el) for el in contacts]
-
-    print("------------------------------")
-
-    for customer in customers:
-        print(customer.phone_info())
-
-    print("------------------------------")
-
-    for customer in customers:
-        print(customer.email_info())
+from enum import Enum
 
 
-# -------------------------------------------
+class Day(Enum):
+    MONDAY = 1
+    TUESDAY = 2
+    WEDNESDAY = 3
+    THURSDAY = 4
+    FRIDAY = 5
+    SATURDAY = 6
+    SUNDAY = 7
 
 
-from collections import UserList
+today = Day.MONDAY
+print(today)  # Виведе: Day.MONDAY
 
 
-class MyList(UserList):
-    # Додавання спеціалізованої поведінки. Наприклад, метод для додавання елемента, якщо він ще не існує
-    def add_if_not_exists(self, item):
-        if item not in self.data:
-            self.data.append(item)
+if today == Day.MONDAY:
+    print("Сьогодні понеділок.")
+else:
+    print("Сьогодні не понеділок.")
 
 
-# Створення екземпляру MyList
-my_list = MyList([1, 2, 3])
-print("Оригінальний список:", my_list)
-
-# Додавання елементу, якщо він не існує
-my_list.add_if_not_exists(3)  # Не додасться, бо вже існує
-my_list.add_if_not_exists(4)  # Додасться, бо ще не існує
-print("Оновлений список:", my_list)
+print(today.name)
+print(today.value)
 
 
-# -------------------------------------------
+day_from_value = Day(1)
+print(day_from_value)  # Виведе: Day.MONDAY
 
 
-class CountableList(UserList):
-    def sum(self):
-        return sum(map(lambda x: int(x), self.data))
+# -------------------------------------------------------
 
 
-countable = CountableList([1, "2", 3, "4"])
-countable.append("5")
-print(countable.sum())
+from enum import Enum, auto
 
 
-# -------------------------------------------
+class OrderStatus(Enum):
+    NEW = auto()
+    PROCESSING = auto()
+    SHIPPED = auto()
+    DELIVERED = auto()
+    CANCELED = auto()
 
 
-from collections import UserString
+class Order:
+    def __init__(self, name: str, status: OrderStatus):
+        self.name = name
+        self.status = status
+
+    def update_status(self, new_status: OrderStatus):
+        self.status = new_status
+        print(f"Замовлення '{self.name}' оновлено до статусу {self.status.name}.")
+
+    def display_status(self):
+        print(f"Статус замовлення '{self.name}': {self.status.name}.")
 
 
-# Створення класу, який розширює UserString
-class MyString(UserString):
-    # Додавання методу, який перевіряє, чи рядок є паліндромом
-    def is_palindrome(self):
-        return self.data == self.data[::-1]
+order1 = Order("Ноутбук", OrderStatus.NEW)
+order2 = Order("Книга", OrderStatus.NEW)
+order3 = Order("Таро", OrderStatus.NEW)
 
+order1.display_status()
+order2.display_status()
+order3.display_status()
 
-# Створення екземпляру MyString
-my_string = MyString("radar")
-print("Рядок:", my_string)
-print("Чи є паліндромом?", my_string.is_palindrome())
+order1.update_status(OrderStatus.PROCESSING)
+order2.update_status(OrderStatus.SHIPPED)
+order3.update_status(OrderStatus.CANCELED)
 
-# Створення іншого екземпляру MyString
-another_string = MyString("hello")
-print("Рядок:", another_string)
-print("Чи є паліндромом?", another_string.is_palindrome())
-
-
-# -------------------------------------------
-
-
-class TruncatedString(UserString):
-    MAX_LEN = 7
-
-    def truncate(self):
-        self.data = self.data[: self.MAX_LEN]
-
-
-ts = TruncatedString("hello world!")
-ts.truncate()
-print(ts)
+order1.display_status()
+order2.display_status()
+order3.display_status()
