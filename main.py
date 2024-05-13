@@ -1,38 +1,26 @@
-try:
-    # Код, який може викликати виняток
-    result = 10 / 0
-except ZeroDivisionError:
-    # Обробка винятку ділення на нуль
-    print("Ділення на нуль!")
-except Exception as e:
-    # Обробка будь-якого іншого винятку
-    print(f"Виникла помилка: {e}")
-else:
-    # Виконується, якщо виняток не був викликаний
-    print("Все пройшло успішно!")
-finally:
-    # Виконується завжди, незалежно від того, був виняток чи ні
-    print("Блок finally завжди виконується.")
+class Human:
+    def __init__(self, name: str, age: int = 0):
+        self.name = name
+        self.age = age
+        # Виклик методу під час ініціалізації
+        self.is_adult = self.__check_adulthood()
+
+        # Приклад логування
+        print(
+            f"Створено Human: {self.name}, Вік: {self.age}, Дорослий: {self.is_adult}"
+        )
+
+    def say_hello(self) -> str:
+        return f"Hello! I am {self.name}"
+
+    def __check_adulthood(self) -> bool:
+        return self.age >= 18
 
 
-# Визначення власного класу винятку
-class AgeVerificationError(Exception):
-    def __init__(self, message="Вік не задовольняє мінімальній вимозі"):
-        self.message = message
-        super().__init__(self.message)
+bill = Human("Bill")
+print(bill.say_hello())
+print(f"Вік: {bill.age}, Дорослий: {bill.is_adult}")
 
-
-# Функція для перевірки віку
-def verify_age(age: int):
-    if age < 18:
-        raise AgeVerificationError("Вік особи меньший за 18 років")
-
-
-if __name__ == "__main__":
-    # Обробка винятку
-    try:
-        verify_age(26)  # Змініть вік для різних результатів
-    except AgeVerificationError as e:
-        print(f"Виняток: {e}")
-    else:
-        print("Вік перевірено, особа доросла.")
+jill = Human("Jill", 20)
+print(jill.say_hello())
+print(f"Вік: {jill.age}, Дорослий: {jill.is_adult}")
