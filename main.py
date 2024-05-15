@@ -1,46 +1,44 @@
-class CountDown:
-    def __init__(self, start):
-        self.current = start
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self.current == 0:
-            raise StopIteration
-        self.current -= 1
-        return self.current
+from contextlib import contextmanager
 
 
-if __name__ == "__main__":
-    counter = CountDown(5)
-    for count in counter:
-        print(count)
-
-
-from random import randint
-
-
-class RandIterator:
-    def __init__(self, start, end, quantity):
-        self.start = start
-        self.end = end
-        self.quantity = quantity
-        self.count = 0
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        self.count += 1
-        if self.count > self.quantity:
-            raise StopIteration
-        else:
-            return randint(self.start, self.end)
+@contextmanager
+def file_manager(filename, mode="w", encoding="utf-8"):
+    print("Відкриваємо файл", filename)
+    file = open(filename, mode, encoding=encoding)
+    try:
+        yield file
+    finally:
+        print("Закриваємо файл", filename)
+        file.close()
+        print("Завершення блоку with")
 
 
 if __name__ == "__main__":
-    my_random_list = RandIterator(1, 20, 5)
+    with file_manager("new_file.txt") as f:
+        f.write("Hello world!\n")
+        f.write("The end\n")
 
-    for rn in my_random_list:
-        print(rn, end=" ")
+
+from contextlib import contextmanager
+from datetime import datetime
+
+
+@contextmanager
+def managed_resource(*args, **kwargs):
+    log = ""
+    timestamp = datetime.now().timestamp()
+    msg = f"{timestamp:<20}|{args[0]:^15}| open \n"
+    log += msg
+    file_handler = open(*args, **kwargs)
+    try:
+        yield file_handler
+    finally:
+        diff = datetime.now().timestamp() - timestamp
+        msg = f"{timestamp:<20}|{args[0]:^15}| closed {round(diff, 6):>15}s \n"
+        log += msg
+        file_handler.close()
+        print(log)
+
+
+with managed_resource("new_file.txt", "r") as f:
+    print(f.read())
