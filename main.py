@@ -1,61 +1,44 @@
+import plotly.graph_objects as go
 import numpy as np
 
 
-def solve_cramer(A, B, verbose=False):
-    """
-    Функція для розв'язання системи лінійних рівнянь за допомогою методу Крамера.
-
-    Параметри:
-    A (numpy.ndarray): Матриця коефіцієнтів.
-    B (numpy.ndarray): Вектор вільних членів.
-    verbose (bool): Якщо True, функція виводить додаткову інформацію.
-
-    Повертає:
-    numpy.ndarray: Вектор розв'язків системи лінійних рівнянь.
-    """
-    # Розмірність матриці A
-    n = A.shape[0]
-
-    # Обчислення визначника матриці A
-    det_A = np.linalg.det(A)
-
-    if det_A == 0:
-        raise ValueError(
-            "Система не має єдиного розв'язку, оскільки визначник матриці A дорівнює нулю."
-        )
-
-    if verbose:
-        print(f"Визначник матриці A: {det_A}")
-
-    # Ініціалізація вектора розв'язків
-    X = np.zeros(n)
-
-    # Обчислення визначників матриць для кожної змінної
-    for i in range(n):
-        # Створюємо копію матриці A
-        Ai = np.copy(A)
-
-        # Замінюємо i-тий стовпець на вектор B
-        Ai[:, i] = B
-
-        # Обчислюємо визначник заміненої матриці
-        det_Ai = np.linalg.det(Ai)
-
-        # Обчислюємо відповідну змінну
-        X[i] = det_Ai / det_A
-
-        if verbose:
-            print(
-                f"Визначник матриці A{i+1} (заміна стовпця {i+1} на вектор B): {det_Ai}"
-            )
-
-    return X
+# Генерація точок
+num_points = 10
+points_x = np.random.rand(num_points) * 10
+points_y = np.random.rand(num_points) * 10
+points_z = np.random.rand(num_points) * 10
 
 
-# Задаємо матрицю A та вектор B
-A = np.array([[-1, 1, 2], [0, -1, -3], [4, -3, 2]])
+# Створення об'єкта "Figure" для 3D графіка
+fig = go.Figure()
 
-B = np.array([1, -4, 7])
 
-# Викликаємо функцію та виводимо розв'язок
-print(f"Вектор рішення: \n{solve_cramer(A, B, verbose=True)}")
+# Додавання точок у 3D простір
+fig.add_trace(go.Scatter3d(
+    x=points_x,
+    y=points_y,
+    z=points_z,
+    mode='markers',
+    marker=dict(
+        size=5,
+        color='blue',  # Колір точок
+        opacity=0.8
+    ),
+    name='Random Points'
+))
+
+
+# Налаштування вигляду графіка
+fig.update_layout(
+    scene=dict(
+        xaxis=dict(title='Вісь X'),
+        yaxis=dict(title='Вісь Y'),
+        zaxis=dict(title='Вісь Z')
+    ),
+    title='3D простір з точками',
+)
+
+
+# Відображення графіка
+fig.show()
+
