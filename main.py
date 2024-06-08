@@ -1,31 +1,28 @@
-import numpy as np
+import random
 import matplotlib.pyplot as plt
 
 
-# Функція для побудови графіка періодичної функції
-def plot_periodic_function(func, period, title):
-    x_values = np.linspace(0, 3 * period, 1000)
-    y_values = func(x_values)
-
-    plt.plot(x_values, y_values)
-    plt.title(title)
-    plt.legend()
+# Задаємо верхнє обмеження
+upper_limit = 10
 
 
-# Приклад 1: Синус
-plt.subplot(2, 2, 1)
-plot_periodic_function(np.sin, 2 * np.pi, "Синус")
+# Генеруємо множину випадкових елементів, обмежених зверху числом 10
+random_set = {random.randint(1, upper_limit) for _ in range(10)}
+# random_set = {random.randint(1, upper_limit)}
 
 
-# Приклад 2: Косинус
-plt.subplot(2, 2, 2)
-plot_periodic_function(np.cos, 2 * np.pi, "Косинус")
+# Виведення множини
+print("Множина випадкових елементів:", random_set)
+print("Обмеження зверху:", upper_limit)
 
 
-# Приклад 3: Тангенс
-plt.subplot(2, 2, 3)
-plot_periodic_function(np.tan, np.pi, "Тангенс")
+# Створення множини
+A = list(random_set)
 
 
-plt.tight_layout()
+# Візуалізація засобами matplotlib
+plt.plot(A, [0] * len(A), "ro")  # 'ro' - червоні точки
+plt.title("Обмежена множина")
+plt.xlabel("Елементи множини")
+plt.yticks([])  # Вимкнення відображення осі y
 plt.show()
