@@ -1,53 +1,48 @@
 import matplotlib.pyplot as plt
-import numpy as np
+from sympy import diff, symbols
 
 
-# Послідовність, яка збігається до 0
-n1 = np.arange(1, 100)
-a_n = 1 / n1
+fig, ax = plt.subplots()
 
 
-# Послідовність збіжна до 1/2
-n2 = np.arange(1, 100)
-b_n = (n2 + 1) / (2 * n2)
+# Перемістимо лівий і нижній стовпчики до x = 0 і y = 0 відповідно
+ax.spines[["left", "bottom"]].set_position(("data", 0))
 
 
-# Збіжна послідовність до e
-n3 = np.arange(1, 100)
-c_n = (1 + 1 / n3) ** n3
+# Сховати верхню та праву лінію
+ax.spines[["top", "right"]].set_visible(False)
 
 
-# Невласна геометрична послідовність, що розходиться
-n4 = np.arange(1, 100)
-d_n = 2**n4
+# Намалюємо стрілки (як чорні трикутники: ">k"/"^k") на кінцях осей
+# Також вимкнемо відсікання (clip_on=False) стрілок
+ax.plot(1, 0, ">k", transform=ax.get_yaxis_transform(), clip_on=False)
+ax.plot(0, 1, "^k", transform=ax.get_xaxis_transform(), clip_on=False)
 
 
-# Візуалізація
-plt.figure(figsize=(12, 8))
+# Додамо проміжні лінії
+ax.grid(True, linestyle="-.")
 
 
-plt.subplot(2, 2, 1)
-plt.plot(n1, a_n, marker="o")
-plt.axhline(y=0, color="black", linestyle="--", linewidth=0.8, alpha=0.7)
-plt.title(r"$\frac{1}{n}$; Границя: 0")
+x, y = symbols("x y")
+# Задаємо функцію
+fx = x * x - 3 * x + 5
+# Обраховуємо похідну функції
+dx = diff((fx))
+k = []
+n = []
+l = []
 
 
-plt.subplot(2, 2, 2)
-plt.plot(n2, b_n, marker="o")
-plt.axhline(y=1 / 2, color="black", linestyle="--", linewidth=0.8, alpha=0.7)
-plt.title(r"$\frac{n + 1}{2n}$; Границя: $\frac{1}{2}$")
+for i in range(1000):
+    j = (i - 300) * 0.01
+    k.append(j)
+    n.append(dx.subs(x, j))
+    l.append(fx.subs(x, j))
 
 
-plt.subplot(2, 2, 3)
-plt.plot(n3, c_n, marker="o")
-plt.axhline(y=np.e, color="black", linestyle="--", linewidth=0.8, alpha=0.7)
-plt.title(r"$(1 + \frac{1}{n})^n$; Границя: $e$")
+ax.plot(k, n)
+ax.plot(k, l)
 
 
-plt.subplot(2, 2, 4)
-plt.plot(n4, d_n, marker="o")
-plt.title("$2^n$; Розходиться")
-
-
-plt.tight_layout()
+# Запускаємо малювання графіка
 plt.show()
