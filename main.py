@@ -1,28 +1,53 @@
-import random
 import matplotlib.pyplot as plt
+import numpy as np
 
 
-# Задаємо верхнє обмеження
-upper_limit = 10
+# Послідовність, яка збігається до 0
+n1 = np.arange(1, 100)
+a_n = 1 / n1
 
 
-# Генеруємо множину випадкових елементів, обмежених зверху числом 10
-random_set = {random.randint(1, upper_limit) for _ in range(10)}
-# random_set = {random.randint(1, upper_limit)}
+# Послідовність збіжна до 1/2
+n2 = np.arange(1, 100)
+b_n = (n2 + 1) / (2 * n2)
 
 
-# Виведення множини
-print("Множина випадкових елементів:", random_set)
-print("Обмеження зверху:", upper_limit)
+# Збіжна послідовність до e
+n3 = np.arange(1, 100)
+c_n = (1 + 1 / n3) ** n3
 
 
-# Створення множини
-A = list(random_set)
+# Невласна геометрична послідовність, що розходиться
+n4 = np.arange(1, 100)
+d_n = 2**n4
 
 
-# Візуалізація засобами matplotlib
-plt.plot(A, [0] * len(A), "ro")  # 'ro' - червоні точки
-plt.title("Обмежена множина")
-plt.xlabel("Елементи множини")
-plt.yticks([])  # Вимкнення відображення осі y
+# Візуалізація
+plt.figure(figsize=(12, 8))
+
+
+plt.subplot(2, 2, 1)
+plt.plot(n1, a_n, marker="o")
+plt.axhline(y=0, color="black", linestyle="--", linewidth=0.8, alpha=0.7)
+plt.title(r"$\frac{1}{n}$; Границя: 0")
+
+
+plt.subplot(2, 2, 2)
+plt.plot(n2, b_n, marker="o")
+plt.axhline(y=1 / 2, color="black", linestyle="--", linewidth=0.8, alpha=0.7)
+plt.title(r"$\frac{n + 1}{2n}$; Границя: $\frac{1}{2}$")
+
+
+plt.subplot(2, 2, 3)
+plt.plot(n3, c_n, marker="o")
+plt.axhline(y=np.e, color="black", linestyle="--", linewidth=0.8, alpha=0.7)
+plt.title(r"$(1 + \frac{1}{n})^n$; Границя: $e$")
+
+
+plt.subplot(2, 2, 4)
+plt.plot(n4, d_n, marker="o")
+plt.title("$2^n$; Розходиться")
+
+
+plt.tight_layout()
 plt.show()
