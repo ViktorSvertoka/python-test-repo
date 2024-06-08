@@ -1,44 +1,35 @@
-import plotly.graph_objects as go
+import matplotlib.pyplot as plt
 import numpy as np
 
 
-# Генерація точок
-num_points = 10
-points_x = np.random.rand(num_points) * 10
-points_y = np.random.rand(num_points) * 10
-points_z = np.random.rand(num_points) * 10
+fig, ax = plt.subplots()
 
 
-# Створення об'єкта "Figure" для 3D графіка
-fig = go.Figure()
+# Перемістимо лівий і нижній стовпчики до x = 0 і y = 0 відповідно
+ax.spines[["left", "bottom"]].set_position(("data", 0))
 
 
-# Додавання точок у 3D простір
-fig.add_trace(go.Scatter3d(
-    x=points_x,
-    y=points_y,
-    z=points_z,
-    mode='markers',
-    marker=dict(
-        size=5,
-        color='blue',  # Колір точок
-        opacity=0.8
-    ),
-    name='Random Points'
-))
+# Сховаємо верхню та праву лінію
+ax.spines[["top", "right"]].set_visible(False)
 
 
-# Налаштування вигляду графіка
-fig.update_layout(
-    scene=dict(
-        xaxis=dict(title='Вісь X'),
-        yaxis=dict(title='Вісь Y'),
-        zaxis=dict(title='Вісь Z')
-    ),
-    title='3D простір з точками',
-)
+# Намалюємо стрілки (як чорні трикутники: ">k"/"^k") на кінцях осей
+# Також вимкнемо відсікання (clip_on=False) стрілок
+ax.plot(1, 0, ">k", transform=ax.get_yaxis_transform(), clip_on=False)
+ax.plot(0, 1, "^k", transform=ax.get_xaxis_transform(), clip_on=False)
 
 
-# Відображення графіка
-fig.show()
+# Сформуємо ряд значень x. 100 елементів від -10 до 10
+x = np.linspace(-10, 10.0, 100)
 
+
+# Додамо проміжні лінії
+ax.grid(True, linestyle="-.")
+
+
+# Сформуємо функцію y = x**2+2
+ax.plot(x, x**2 + 2)
+
+
+# Запускаємо малювання графіка
+plt.show()
