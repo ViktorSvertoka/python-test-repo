@@ -1,16 +1,5 @@
-from sympy import *
-import numpy as np
-
-
-x = Symbol("x")
-y = x**6 + 2 * x**5 - 30 * x**4 + 16 * x**3 - 12 * x**2 + x + 3
-
-
-yprime = y.diff(x)
-print(yprime)
-
 import matplotlib.pyplot as plt
-import numpy as np
+from sympy import diff, symbols
 
 
 fig, ax = plt.subplots()
@@ -34,12 +23,30 @@ ax.plot(0, 1, "^k", transform=ax.get_xaxis_transform(), clip_on=False)
 ax.grid(True, linestyle="-.")
 
 
-# Сформуємо ряд значень x. 100 елементів від -1 до 4
-x = np.linspace(-1, 4, 100, False)
+# Сформуємо ряд значень x. 100 елементів від -2 до 2.
 
 
-# Функціональну залежність
-ax.plot(x, 6 * x**5 + 10 * x**4 - 120 * x**3 + 48 * x**2 - 24 * x + 1)
+x, y = symbols("x y")
+# Задаємо функцію
+fx = x**6 + 2 * x**5 - 30 * x**4 + 16 * x**3 - 12 * x**2 + x + 3
+# Обраховуємо похідну функції
+dx = diff((fx))
+k = []
+n = []
+l = []
+
+
+for i in range(1000):
+    j = (
+        (i) * 0.001
+    ) + 3  # Задаємо інтервал - починаючи від 3 - тисячу разів по одній тисячній - буде 1, тому перебір буде йти до 4.
+    k.append(j)
+    n.append(dx.subs(x, j))
+    l.append(fx.subs(x, j))
+
+
+ax.plot(k, n)
+ax.plot(k, l)
 
 
 # Запускаємо малювання графіка
