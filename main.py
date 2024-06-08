@@ -27,14 +27,8 @@ ax.grid(True, linestyle="-.")
 x = np.linspace(-5, 5, 100, False)
 
 
-# Задаємо 2 частини функціональної залежності
-a = np.where(x > 3, 2 * x - 1, np.nan)
-b = np.where((x <= 3), 4, np.nan)
-
-
-# Генеруємо 2 графіки однакового кольору
-ax.plot(x, a, color="blue")
-ax.plot(x, b, color="blue")
+# Функціональну залежність
+ax.plot(x, -(2 / 3) * x - 1 / 3)
 
 
 # Запускаємо малювання графіка
