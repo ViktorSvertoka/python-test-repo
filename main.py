@@ -1,35 +1,56 @@
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 
 
-fig, ax = plt.subplots()
+# Приклад 1: Квадратична функція
+def quadratic_function(x):
+    return x**2
 
 
-# Перемістимо лівий і нижній стовпчики до x = 0 і y = 0 відповідно
-ax.spines[["left", "bottom"]].set_position(("data", 0))
+# Приклад 2: Косинус
+def cosine_function(x):
+    return np.cos(x)
 
 
-# Сховати верхню та праву лінію
-ax.spines[["top", "right"]].set_visible(False)
+# Приклад 3: Модуль x
+def absolute_value_function(x):
+    return np.abs(x)
 
 
-# Намалюємо стрілки (як чорні трикутники: ">k"/"^k") на кінцях осей
-# Також вимкнемо відсікання (clip_on=False) стрілок
-ax.plot(1, 0, ">k", transform=ax.get_yaxis_transform(), clip_on=False)
-ax.plot(0, 1, "^k", transform=ax.get_xaxis_transform(), clip_on=False)
+# Значення x для побудови графіка
+x_values = np.linspace(-5, 5, 100)
 
 
-# Додамо проміжні лінії
-ax.grid(True, linestyle="-.")
+# Графіки парних функцій
+plt.figure(figsize=(12, 4))
 
 
-# Сформуємо ряд значень x. 100 елементів від -5 до 5
-x = np.linspace(-5, 5, 100, False)
+plt.subplot(1, 3, 1)
+plt.plot(x_values, quadratic_function(x_values), label=r"$f(x) = x^2$")
+plt.plot(
+    x_values, quadratic_function(-x_values), linestyle="--", label=r"$f(-x) = x^2$"
+)
+plt.title("Квадратична функція")
+plt.legend()
 
 
-# Функціональну залежність
-ax.plot(x, -(2 / 3) * x - 1 / 3)
+plt.subplot(1, 3, 2)
+plt.plot(x_values, cosine_function(x_values), label=r"$f(x) = \cos(x)$")
+plt.plot(
+    x_values, cosine_function(-x_values), linestyle="--", label=r"$f(-x) = \cos(x)$"
+)
+plt.title("Косинус")
+plt.legend()
 
 
-# Запускаємо малювання графіка
+plt.subplot(1, 3, 3)
+plt.plot(x_values, absolute_value_function(x_values), label=r"$f(x) = |x|$")
+plt.plot(
+    x_values, absolute_value_function(-x_values), linestyle="--", label=r"$f(-x) = |x|$"
+)
+plt.title("Модуль x")
+plt.legend()
+
+
+plt.tight_layout()
 plt.show()
