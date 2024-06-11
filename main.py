@@ -1,43 +1,45 @@
+import numpy as np
+import matplotlib.pyplot as plt
 import random
 
 
-def urn_experiment(num_experiments):
-    # Ініціалізуємо кількість білих та чорних куль
-    white_balls = 3
-    black_balls = 7
-
-    n = white_balls + black_balls
-
-    white_balls_list = ["біла"] * white_balls
-    black_balls_list = ["чорна"] * black_balls
-
-    choice_list = white_balls_list + black_balls_list
-
-    # Лічильники подій витягання білої та чорної кулі
-    white_count = 0
-    black_count = 0
-
-    for _ in range(num_experiments):
-        # Витягуємо одну кулю випадковим чином
-        selected_ball = random.choice(choice_list)
-
-        # Підрахунок результатів
-        if selected_ball == "біла":
-            white_count += 1
-        else:
-            black_count += 1
-
-    # Виведення результатів та відносної частоти
-    print("\nСтатистика:")
-    print(f"Кількість експериментів: {num_experiments}")
-    print(f"Кількість білих куль: {white_count}")
-    print(f"Кількість чорних куль: {black_count}")
-    print(f"Відносна частота білої кулі: {white_count / num_experiments:.2f}")
-    print(f"Відносна частота чорної кулі: {black_count / num_experiments:.2f}")
+N = 1000  # розмір вибірки
+X = []  # Пустий масив для наповнення
 
 
-# Введення кількості експериментів
-num_experiments = int(input("Введіть кількість експериментів: "))
+# Цикл з 1000 ітерацій, на кожній з яких додаємо 1 випадковий цілочисельний елемент з імовірністю, рівномірно розподіленою від 1 до 6
+for i in range(N):
+    X.append(random.uniform(1, 6))
 
-# Запуск симуляції
-urn_experiment(num_experiments)
+
+# формується 2 масиви: n - кількість елементів, що потрапили в інтервал, x - масив границь інтервалів
+print(np.histogram(X, bins=5))
+n, x = np.histogram(X, bins=5)
+
+
+# масив початків інтервалів (прибрали останнє, найбільше значення)
+xmin = x[:-1]
+
+
+# ширина інтервалу (різниця двох послідовних стовпчиків)
+dx = x[1] - x[0]
+
+
+# емпірична приведена частота: частка від кількості елементів в інтервалі та загальної кількості елементів
+y = n / N
+
+
+# масив центрів інтервалів
+xmid = xmin + dx / 2
+# виводимо емпіричну гістограму приведених частот
+plt.bar(xmid, y, width=dx, color="y")
+
+
+# Виводимо підписи на осях
+plt.xlabel("x")
+plt.ylabel("Частота (ймовірність)")
+
+
+# Малюємо сітку та гістограму.
+plt.grid()
+plt.show()
