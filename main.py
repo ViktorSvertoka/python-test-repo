@@ -1,44 +1,43 @@
 import random
 
 
-def coin_toss():
-    # Генеруємо випадкове число (0 або 1) для симуляції підкидання монети
-    result = random.randint(0, 1)
+def urn_experiment(num_experiments):
+    # Ініціалізуємо кількість білих та чорних куль
+    white_balls = 3
+    black_balls = 7
 
-    # Визначаємо результат: орел чи решка
-    if result == 0:
-        return "Орел"
-    else:
-        return "Решка"
+    n = white_balls + black_balls
 
+    white_balls_list = ["біла"] * white_balls
+    black_balls_list = ["чорна"] * black_balls
 
-def simulate_coin_tosses(num_tosses):
-    # Здійснюємо симуляцію та виводимо результат
-    heads_count = 0  # кількість орлів
-    tails_count = 0  # кількість решок
+    choice_list = white_balls_list + black_balls_list
 
-    for _ in range(num_tosses):
-        toss_result = coin_toss()
-        print(toss_result)
+    # Лічильники подій витягання білої та чорної кулі
+    white_count = 0
+    black_count = 0
 
-        # Підрахунок кількості орлів та решок
-        if toss_result == "Орел":
-            heads_count += 1
+    for _ in range(num_experiments):
+        # Витягуємо одну кулю випадковим чином
+        selected_ball = random.choice(choice_list)
+
+        # Підрахунок результатів
+        if selected_ball == "біла":
+            white_count += 1
         else:
-            tails_count += 1
+            black_count += 1
 
-    return heads_count, tails_count
+    # Виведення результатів та відносної частоти
+    print("\nСтатистика:")
+    print(f"Кількість експериментів: {num_experiments}")
+    print(f"Кількість білих куль: {white_count}")
+    print(f"Кількість чорних куль: {black_count}")
+    print(f"Відносна частота білої кулі: {white_count / num_experiments:.2f}")
+    print(f"Відносна частота чорної кулі: {black_count / num_experiments:.2f}")
 
 
-# Введення кількості підкидань
-num_tosses = int(input("Введіть кількість підкидань монети: "))
+# Введення кількості експериментів
+num_experiments = int(input("Введіть кількість експериментів: "))
 
 # Запуск симуляції
-heads_count, tails_count = simulate_coin_tosses(num_tosses)
-
-# Виведення статистики
-print("\nСтатистика:")
-print(f"Кількість орлів: {heads_count}")
-print(f"Кількість решок: {tails_count}")
-print(f"Відносна частота орла: {heads_count / num_tosses:.2f}")
-print(f"Відносна частота решки: {tails_count / num_tosses:.2f}")
+urn_experiment(num_experiments)
