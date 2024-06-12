@@ -1,11 +1,3 @@
-import random
-
-X = []
-for i in range(10):
-    X.append(random.randint(1, 6))
-print(X)
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 import random
@@ -15,14 +7,14 @@ N = 1000  # розмір вибірки
 X = []  # Пустий масив для наповнення
 
 
-# Цикл з 1000 ітерацій, на кожній з яких додаємо 1 випадковий цілочисельний елемент з імовірністю, рівномірно розподіленою від 1 до 6
+# Цикл з 1000 ітерацій, на кожній з яких додаємо 1 випадковий елемент з імовірністю, рівномірно розподіленою від 1 до 10
 for i in range(N):
-    X.append(random.uniform(1, 6))
+    X.append(random.uniform(1, 10))
 
 
 # формується 2 масиви: n - кількість елементів, що потрапили в інтервал, x - масив границь інтервалів
-print(np.histogram(X, bins=5))
-n, x = np.histogram(X, bins=5)
+print(np.histogram(X, bins=10))
+n, x = np.histogram(X, bins=10)
 
 
 # масив початків інтервалів (прибрали останнє, найбільше значення)
@@ -48,6 +40,6 @@ plt.xlabel("x")
 plt.ylabel("Частота (ймовірність)")
 
 
-# Малюємо сітку та гістограму.
+# Малюємо сітку та гістограму
 plt.grid()
 plt.show()
