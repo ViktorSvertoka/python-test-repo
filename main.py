@@ -1,49 +1,40 @@
-import numpy as np
 import matplotlib.pyplot as plt
-import random
-from scipy import stats
+import numpy as np
 
 
-N = len(value_data.Q106)  # розмір вибірки
-X = value_data.Q106
+# Визначення точок для опуклої множини
+convex_points = np.array([[1, 1], [2, 4], [5, 5], [7, 5], [8, 2]])
 
 
-# формується 2 масиви: n - кількість елементів, що попали в інтервал, x - масив меж інтервалів
-print(np.histogram(X, bins=13))
-n, x = np.histogram(X, bins=13)
+# Визначення точок для неопуклої множини
+non_convex_points = np.array([[1, 1], [2, 4], [3, 3], [5, 2], [7, 5], [9, 1]])
 
 
-mean, std = stats.norm.fit(X)
+# Побудова графіків
+plt.figure(figsize=(12, 5))
 
 
-# масив початків інтервалів (прибрали останнє, найбільше значення)
-xmin = x[:-1]
-
-
-# ширина інтервалу (різниця двох послідовних стовпчиків).
-dx = x[1] - x[0]
-
-
-# емпірична приведена частота: частка від кількості елементів в інтервалі та загальної кількості елементів.
-y = n / N
-
-
-# масив центрів інтервалів
-xmid = xmin + dx / 2
-# виводимо емпіричну гістограму приведених частот
-plt.bar(xmid, y, width=dx, color="y")
-
-
-X1 = np.linspace(-2, 10, 1000)
-dist2 = stats.norm(loc=mean, scale=std)
-plt.plot(X1, dist2.pdf(X1), "k-")
-
-
-# Виводимо підписи на осях
+# Опукла множина
+plt.subplot(1, 2, 1)
+plt.plot(convex_points[:, 0], convex_points[:, 1], "bo-", label="Опукла множина")
+plt.fill(convex_points[:, 0], convex_points[:, 1], "b", alpha=0.3)
+plt.title("Опукла множина")
 plt.xlabel("x")
-plt.ylabel("Частота (ймовірність)")
+plt.ylabel("y")
+plt.legend()
 
 
-# Малюємо сітку та гістограму.
-plt.grid()
+# Неопукла множина
+plt.subplot(1, 2, 2)
+plt.plot(
+    non_convex_points[:, 0], non_convex_points[:, 1], "ro-", label="Неопукла множина"
+)
+plt.fill(non_convex_points[:, 0], non_convex_points[:, 1], "r", alpha=0.3)
+plt.title("Неопукла множина")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.legend()
+
+
+plt.tight_layout()
 plt.show()
