@@ -1,39 +1,37 @@
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
 
 
-# Визначення точок для опуклої множини
-convex_points = np.array([[1, 1], [2, 4], [5, 5], [7, 5], [8, 2]])
+matplotlib.rcParams.update({"font.size": 12})
 
 
-# Визначення точок для неопуклої множини
-non_convex_points = np.array([[1, 1], [2, 4], [3, 3], [5, 2], [7, 5], [9, 1]])
+x = np.linspace(0, 10, 100)
+x1 = []
+for i in range(100):
+    x1.append(3)
+y1 = np.linspace(0, 10, 100)
+f1 = 2 * x
+f2 = (1 / 4) * x
+f3 = 1 - x
 
 
-# Побудова графіків
-plt.figure(figsize=(12, 5))
+# вказуємо в аргументі label текст легенди
+plt.plot(x, f1, ":b", label="x2>2x1")
+plt.plot(x, f2, "--b", label="x2<1/4x1")
+plt.plot(x, f3, "y", label="x2>1-x1")
 
 
-# Опукла множина
-plt.subplot(1, 2, 1)
-plt.plot(convex_points[:, 0], convex_points[:, 1], "bo-", label="Опукла множина")
-plt.fill(convex_points[:, 0], convex_points[:, 1], "b", alpha=0.3)
-plt.title("Опукла множина")
-plt.xlabel("x")
-plt.ylabel("y")
-plt.legend()
+plt.xlabel(r"$x2$", fontsize=16)
+plt.ylabel(r"$x3$", fontsize=16)
 
 
-# Неопукла множина
-plt.subplot(1, 2, 2)
-plt.plot(
-    non_convex_points[:, 0], non_convex_points[:, 1], "ro-", label="Неопукла множина"
-)
-plt.fill(non_convex_points[:, 0], non_convex_points[:, 1], "r", alpha=0.3)
-plt.title("Неопукла множина")
-plt.xlabel("x")
-plt.ylabel("y")
-plt.legend()
+plt.xlim([0, 2])
+plt.ylim([0, 2])
+
+
+# виводимо легенду
+plt.legend(fontsize=14)
 
 
 plt.tight_layout()
