@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import random
+from scipy import stats
 
 
 N = len(value_data.Q106)  # розмір вибірки
@@ -10,6 +11,9 @@ X = value_data.Q106
 # формується 2 масиви: n - кількість елементів, що попали в інтервал, x - масив меж інтервалів
 print(np.histogram(X, bins=13))
 n, x = np.histogram(X, bins=13)
+
+
+mean, std = stats.norm.fit(X)
 
 
 # масив початків інтервалів (прибрали останнє, найбільше значення)
@@ -28,6 +32,11 @@ y = n / N
 xmid = xmin + dx / 2
 # виводимо емпіричну гістограму приведених частот
 plt.bar(xmid, y, width=dx, color="y")
+
+
+X1 = np.linspace(-2, 10, 1000)
+dist2 = stats.norm(loc=mean, scale=std)
+plt.plot(X1, dist2.pdf(X1), "k-")
 
 
 # Виводимо підписи на осях
