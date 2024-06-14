@@ -1,27 +1,40 @@
-import time
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
 
 
-from scipy.optimize import linprog
+matplotlib.rcParams.update({"font.size": 12})
 
 
-start = time.time()
+x = np.linspace(0, 10, 100)
+x1 = []
+for i in range(100):
+    x1.append(2)
+y1 = np.linspace(0, 10, 100)
+f1 = (5 / 2) * x + 1
+f2 = 3 + 0 * x
+f3 = 11 / 2 + x
 
 
-c = [1, 2]  # Цільова функція — на мінімум
-A_ub = [
-    [-2, 1],
-    [1, -3],
-    [-1, -1],
-    [1, 2],
-    [-1, 0],
-    [0, -1],
-]  # Коефіцієнти при нерівностях
-b_ub = [0, 0, -1, 5, 0, 0]  # Результати при нерівностях
+# вказуємо в аргументі label вміст легенди
+plt.plot(x, f1, ":b", label="< (5/2)*x3+1")
+plt.plot(x, f2, "--r", label=">3")
+plt.plot(x1, y1, "k", label="x3<2")
+plt.plot(x, f3, "y", label="<11/2+x3")
+# plt.plot(x, f4, 'k', label='total')
 
 
-print(linprog(c, A_ub, b_ub))  # Оптимізація
+plt.xlabel(r"$x2$", fontsize=16)
+plt.ylabel(r"$x3$", fontsize=16)
 
 
-stop = time.time()
-print("Час :")
-print(stop - start)
+plt.xlim([0, 10])
+plt.ylim([0, 10])
+
+
+# виводимо легенду
+plt.legend(fontsize=14)
+
+
+plt.tight_layout()
+plt.show()
