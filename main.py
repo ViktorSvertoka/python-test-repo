@@ -1,40 +1,84 @@
-import numpy as np
+def get_first_item(items):
+    return items[0]
+
+
+# Завжди виконується одна операція, незалежно від розміру списку
+
+print(get_first_item([1, 2, 3, 4, 5]))
+
+
+def print_all_items(items):
+    for item in items:
+        print(item)
+
+
+# Кількість операцій прямо пропорційна кількості елементів у списку
+
+print_all_items([1, 2, 3, 4, 5])
+
+
+def dot_product(v1, v2):
+    return sum(x * y for x, y in zip(v1, v2))
+
+
+def get_orthogonal_pairs(vectors):
+    n = len(vectors)
+    orthogonal_pairs = []
+
+    for i in range(n):
+        for j in range(i + 1, n):
+            if dot_product(vectors[i], vectors[j]) == 0:
+                orthogonal_pairs.append((i, j))
+
+    return orthogonal_pairs
+
+
+vectors = [[1, 0, 0], [0, 1, 0], [0, 0, 1], [1, 1, 1]]
+print(get_orthogonal_pairs(vectors))
+
+
+def multiply_matrices(A, B):
+    n = len(A)
+    C = [[0 for _ in range(n)] for _ in range(n)]
+
+    for i in range(n):
+        for j in range(n):
+            for k in range(n):
+                C[i][j] += A[i][k] * B[k][j]
+
+    return C
+
+
+A = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+B = [[10, 11, 12], [13, 14, 15], [16, 17, 18]]
+
+print(multiply_matrices(A, B))
+
+
 import matplotlib.pyplot as plt
-import matplotlib
+import numpy as np
 
+# Визначаємо діапазон n
+n = np.arange(1, 100)
 
-matplotlib.rcParams.update({"font.size": 12})
+# Обчислюємо значення для різних часових складностей
+O_1 = np.ones_like(n)
+O_n = n
+O_n_squared = n**2
+O_n_cubed = n**3
 
-
-x = np.linspace(0, 10, 100)
-x1 = []
-for i in range(100):
-    x1.append(2)
-y1 = np.linspace(0, 10, 100)
-f1 = (5 / 2) * x + 1
-f2 = 3 + 0 * x
-f3 = 11 / 2 + x
-
-
-# вказуємо в аргументі label вміст легенди
-plt.plot(x, f1, ":b", label="< (5/2)*x3+1")
-plt.plot(x, f2, "--r", label=">3")
-plt.plot(x1, y1, "k", label="x3<2")
-plt.plot(x, f3, "y", label="<11/2+x3")
-# plt.plot(x, f4, 'k', label='total')
-
-
-plt.xlabel(r"$x2$", fontsize=16)
-plt.ylabel(r"$x3$", fontsize=16)
-
-
-plt.xlim([0, 10])
-plt.ylim([0, 10])
-
-
-# виводимо легенду
-plt.legend(fontsize=14)
-
-
-plt.tight_layout()
+# Побудова графіка
+plt.figure(figsize=(12, 8))
+plt.plot(n, O_1, label="O(1)")
+plt.plot(n, O_n, label="O(n)")
+plt.plot(n, O_n_squared, label="O(n^2)")
+plt.plot(n, O_n_cubed, label="O(n^3)")
+plt.xlabel("n")
+plt.ylabel("Operations")
+plt.title("Основні часові складності алгоритмів")
+plt.legend()
+plt.grid(True, which="both", ls="--", c="0.65")
 plt.show()
+
+
+plt.yscale("log")  # Встановлюємо логарифмічну шкалу для осі y
