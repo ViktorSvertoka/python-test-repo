@@ -1,30 +1,25 @@
-import networkx as nx
-import matplotlib.pyplot as plt
+def factorial(n):
+    if n == 0:  # базовий випадок
+        return 1
+    else:
+        return n * factorial(n - 1)  # рекурсивний випадок
 
-# Створюємо порожній граф
-G = nx.Graph()
 
-# Додаємо вершини
-G.add_node("A")
-G.add_node("B")
-G.add_node("C")
+print(factorial(5))  # виведе 120
 
-# Додаємо з'єднання
-G.add_edge("A", "B")
-G.add_edge("B", "C")
 
-# Задаємо розташування вершин
-positions = {"A": (0, 0.5), "B": (1, 0.5), "C": (2, 0.5)}
+def fibonacci(n):
+    if n <= 1:  # базовий випадок
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)  # рекурсивний випадок
 
-# Малюємо граф
-plt.figure(figsize=(6, 6))
-nx.draw_networkx(
-    G,
-    pos=positions,
-    with_labels=True,
-    font_weight="bold",
-    node_color="lightblue",
-    edge_color="gray",
-)
-plt.axis("off")
-plt.show()
+
+print(fibonacci(10))  # виведе 55
+
+
+def stupid_recursion():
+    stupid_recursion()
+
+
+stupid_recursion()
