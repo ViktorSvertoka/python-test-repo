@@ -1,55 +1,50 @@
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
+from pathlib import Path
+
+import uvicorn
+from fastapi import FastAPI, BackgroundTasks
+from fastapi_mail import FastMail, MessageSchema, ConnectionConfig, MessageType
+from pydantic import EmailStr, BaseModel
+from typing import List
 
 
-def draw_triangle(vertices, ax):
-    triangle = patches.Polygon(vertices, fill=False, edgecolor="black")
-    ax.add_patch(triangle)
+class EmailSchema(BaseModel):
+    email: EmailStr
 
 
-def midpoint(point1, point2):
-    return [(point1[0] + point2[0]) / 2, (point1[1] + point2[1]) / 2]
+conf = ConnectionConfig(
+    MAIL_USERNAME="example@meta.ua",
+    MAIL_PASSWORD="secretPassword",
+    MAIL_FROM="example@meta.ua",
+    MAIL_PORT=465,
+    MAIL_SERVER="smtp.meta.ua",
+    MAIL_FROM_NAME="Example email",
+    MAIL_STARTTLS=False,
+    MAIL_SSL_TLS=True,
+    USE_CREDENTIALS=True,
+    VALIDATE_CERTS=True,
+    TEMPLATE_FOLDER=Path(__file__).parent / "templates",
+)
+
+app = FastAPI()
 
 
-def sierpinski(vertices, level, ax):
-    draw_triangle(vertices, ax)
-    if level > 0:
-        sierpinski(
-            [
-                vertices[0],
-                midpoint(vertices[0], vertices[1]),
-                midpoint(vertices[0], vertices[2]),
-            ],
-            level - 1,
-            ax,
-        )
-        sierpinski(
-            [
-                vertices[1],
-                midpoint(vertices[0], vertices[1]),
-                midpoint(vertices[1], vertices[2]),
-            ],
-            level - 1,
-            ax,
-        )
-        sierpinski(
-            [
-                vertices[2],
-                midpoint(vertices[2], vertices[1]),
-                midpoint(vertices[0], vertices[2]),
-            ],
-            level - 1,
-            ax,
-        )
+@app.post("/send-email")
+async def send_in_background(background_tasks: BackgroundTasks, body: EmailSchema):
+    message = MessageSchema(
+        subject="Fastapi mail module",
+        recipients=[body.email],
+        template_body={"fullname": "Billy Jones"},
+        subtype=MessageType.html,
+    )
+
+    fm = FastMail(conf)
+
+    background_tasks.add_task(
+        fm.send_message, message, template_name="example_email.html"
+    )
+
+    return {"message": "email has been sent"}
 
 
-def main():
-    fig, ax = plt.subplots()
-    ax.set_aspect("equal")
-    ax.set_axis_off()
-    vertices = [[0, 0], [0.5, 0.75], [1, 0]]
-    sierpinski(vertices, 3, ax)
-    plt.show()
-
-
-main()
+if __name__ == "__main__":
+    uvicorn.run("main:app", port=8000, reload=True)
