@@ -46,8 +46,16 @@
 - my-package - пакети.
 - DB_PASSWORD - константи.
 
+### Активація і робота з віртуальним середовищем в Python.
+
 `python3 -m venv .venv`
 
+`which python`
+
 `source .venv/bin/activate`
+
+`deactivate`
+
+### Виконання коду в Python.
 
 `python3 main.py`
