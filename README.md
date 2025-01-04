@@ -59,3 +59,18 @@
 ### Виконання коду в Python.
 
 `python3 main.py`
+
+### Popular Python Libraries
+
+| Library            | Description                                                                            | Installation Command         |
+| ------------------ | -------------------------------------------------------------------------------------- | ---------------------------- |
+| **colorama**       | Adds color support to console output                                                   | `pip install colorama`       |
+| **click**          | For creating command-line interfaces with options and prompts                          | `pip install click`          |
+| **rich**           | For beautiful and rich text in the terminal, including tables, progress bars, and more | `pip install rich`           |
+| **typer**          | For building CLI applications with auto-complete and rich features                     | `pip install typer`          |
+| **prompt_toolkit** | Enables interactive command-line input with dropdowns and auto-completion              | `pip install prompt_toolkit` |
+| **pyfiglet**       | Renders ASCII art from text in the terminal                                            | `pip install pyfiglet`       |
+| **tabulate**       | Formats data as tables for console output                                              | `pip install tabulate`       |
+| **inquirer**       | Creates interactive command-line prompts                                               | `pip install inquirer`       |
+| **sh**             | Simplifies shell command execution in Python                                           | `pip install sh`             |
+| **blessed**        | For advanced terminal control and styling                                              | `pip install blessed`        |
