@@ -110,4 +110,5 @@ typings/
 
 
 .venv
+venv
 __pycache__
