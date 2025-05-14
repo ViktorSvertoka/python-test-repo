@@ -48,7 +48,13 @@ Load up http://localhost:3000 in your browser to view the example website.
   TypeScript, ES modules, and more to your client side and server side
   JavaScript.
 
-![Screenshoot](./print_screen.png)
+### Task 1
+
+![Screenshoot](./print_screen_1.png)
+
+### Task 2
+
+![Screenshoot](./print_screen_2.png)
 
 > [!NOTE]
 >
