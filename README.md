@@ -6,6 +6,10 @@
 
 ![Screenshoot](./assets/print_screen_2.png)
 
+### Task (Python)
+
+![Screenshoot](./assets/print_screen_3.png)
+
 > [!NOTE]
 >
 > 1
