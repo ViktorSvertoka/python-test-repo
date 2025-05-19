@@ -6,19 +6,19 @@
 
 ![Screenshoot](./assets/print_screen_2.png)
 
-### Task (Python)
+### Task 2 (Python)
 
 ![Screenshoot](./assets/print_screen_3.png)
 
-### Task (Java)
+### Task 3 (Java)
 
 ![Screenshoot](./assets/print_screen_4.png)
 
-### Task (.NET)
+### Task 4 (.NET)
 
 ![Screenshoot](./assets/print_screen_5.png)
 
-### Task (Node)
+### Task 5 (Node)
 
 ![Screenshoot](./assets/print_screen_6.png)
 
