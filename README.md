@@ -10,6 +10,10 @@
 
 ![Screenshoot](./assets/print_screen_3.png)
 
+### Task (Java)
+
+![Screenshoot](./assets/print_screen_4.png)
+
 > [!NOTE]
 >
 > 1
